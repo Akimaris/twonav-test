@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Pizza Co.</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Our catalog : </h2>
+        </div>
+    </div>
+    <div class="row">
+        {% for pizza in pizzas %}
+            <div class="col-md-3">
+                <img class="img-thumbnail"
+                     src="https://www.pizzahut.com.gt/system/oven/asset/foods/attachments/000/000/238/large/BodegonPepperoni_360x360.png?1468963356"
+                     alt="">
+                <div class="row margin-top-10">
+                    <div class="col-md-4">
+                        <p class="pizza-name">{{ pizza.name }}</p>
+                        <p class="pizza-price">{{ pizza.price }} €</p>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{ path('view_pizza', {'id': pizza.id}) }}" class="btn btn-success pull-left">View</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="{{ path('customize_pizza', {'id': pizza.id}) }}" class="btn btn-success pull-right">Customize</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

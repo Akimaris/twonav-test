@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row margin-top-10">
+        <div class="col-md-6">
+            <a href="{{ path('admin_index') }}" class="btn btn-primary"> Back to admin</a>
+        </div>
+        <div class="col-md-6">
+            <a href="{{ path('ingredient_new') }}" class="btn btn-primary pull-right" role="button">Add ingredient</a>
+        </div>
+    </div>
+    <div class="row margin-top-10">
+        <div class="col-md-6">
+            <h1>Ingredients</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for ingredient in ingredients %}
+                    <tr>
+                        <td><a href="{{ path('ingredient_show', { 'id': ingredient.id }) }}">{{ ingredient.id }}</a>
+                        </td>
+                        <td>{{ ingredient.name }}</td>
+                        <td>{{ ingredient.price }}</td>
+                        <td>
+                            <a class="btn btn-primary"
+                               href="{{ path('ingredient_show', { 'id': ingredient.id }) }}">show</a>
+                            <a class="btn btn-success"
+                               href="{{ path('ingredient_edit', { 'id': ingredient.id }) }}">edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

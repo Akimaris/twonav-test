@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row margin-top-10">
+        <div class="col-md-12">
+            <a href="{{ path('admin_index') }}" class="btn btn-primary"> Back to admin</a>
+        </div>
+    </div>
+    <div class="row margin-top-10">
+        <div class="col-md-6">
+            <h1>Pizzas</h1>
+        </div>
+        <div class="col-md-6">
+            <a href="{{ path('pizza_new') }}" class="btn btn-primary float-right" role="button">Add pizza</a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for pizza in pizzas %}
+                <tr>
+                    <td><a href="{{ path('pizza_show', { 'id': pizza.id }) }}">{{ pizza.id }}</a></td>
+                    <td>{{ pizza.name }}</td>
+                    <td>{{ pizza.price }}</td>
+                    <td>
+                        <a class="btn btn-primary"
+                           href="{{ path('pizza_show', { 'id': pizza.id }) }}">show</a>
+                        <a class="btn btn-success"
+                           href="{{ path('pizza_edit', { 'id': pizza.id }) }}">edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}

@@ -1,0 +1,7 @@
+app:
+    resource: "@AppBundle/Resources/config/routing/pizza.yml"
+    prefix: /
+
+admin:
+    resource: "@AppBundle/Resources/config/routing/admin.yml"
+    prefix: /admin

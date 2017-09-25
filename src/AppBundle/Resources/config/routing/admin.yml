@@ -1,0 +1,12 @@
+admin_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Admin/Admin:index" }
+    methods:  GET
+
+ingredient :
+    resource: "@AppBundle/Resources/config/routing/admin/ingredient.yml"
+    prefix: /ingredient
+
+pizza :
+    resource: "@AppBundle/Resources/config/routing/admin/pizza.yml"
+    prefix: /pizza

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row margin-top-10">
+        <div class="col-md-4">
+            <h1>Edit ingredient</h1>
+        </div>
+        <div class="col-md-8">
+            {{ form_start(delete_form) }}
+            <input type="submit" value="Delete" class="btn btn-danger pull-right">
+            {{ form_end(delete_form) }}
+            <a href="{{ path('ingredient_index') }}" class="btn btn-primary pull-right">Back to the list</a>
+        </div>
+    </div>
+
+    {{ form_start(edit_form) }}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(edit_form.name) }}
+                {{ form_widget(edit_form.name, {'attr' : { 'class' : 'form-control'} }) }}
+                {{ form_errors(edit_form.name) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(edit_form.price) }}
+                {{ form_widget(edit_form.price, {'attr' : { 'class' : 'form-control'} }) }}
+                {{ form_errors(edit_form.price) }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <input type="submit" value="Edit" class="btn btn-success"/>
+        </div>
+    </div>
+    {{ form_end(edit_form) }}
+{% endblock %}

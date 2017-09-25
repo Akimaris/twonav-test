@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="row margin-top-10">
+        <div class="col-md-4">
+            <h1>Customize pizza</h1>
+        </div>
+    </div>
+
+    {{ form_start(edit_form) }}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(edit_form.name) }}
+                {{ form_widget(edit_form.name, {'attr' : { 'class' : 'form-control', 'readonly' : 'readonly'} }) }}
+                {{ form_errors(edit_form.name) }}
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                {{ form_label(edit_form.price) }}
+                {{ form_widget(edit_form.price, {'attr' : { 'class' : 'form-control pizza-price', 'readonly' : 'readonly'} }) }}
+                {{ form_errors(edit_form.price) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5>Available ingredients </h5>
+            <div class="row" id="available-ingredients">
+                {% for ingredient in ingredients %}
+                    {% if not pizza.hasIngredient(ingredient) %}
+                        <div class="col-md-12 ingredient-container margin-top-10" data-id="{{ ingredient.id }}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span>{{ ingredient.name }}</span>
+                                    <a class="btn btn-success add-ingredient pull-right"> <span
+                                                class="glyphicon glyphicon-plus"
+                                                aria-hidden="true"></span></a>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="ingredient-sorting">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ingredient-form">
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5>Added ingredients</h5>
+            <div class="row" id="added-ingredients">
+                {% for ingredient in pizza.pizzaIngredients|sort %}
+                    <div class="col-md-12 ingredient-container margin-top-10" data-id="{{ ingredient.ingredient.id }}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>{{ ingredient.ingredient.name }}</span>
+                                <a class="btn btn-danger remove-ingredient pull-right"> <span
+                                            class="glyphicon glyphicon-minus"
+                                            aria-hidden="true"></span></a>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="ingredient-sorting">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ingredient-form">
+                            <input class="ingredient-id" name="" type="hidden" value="{{ ingredient.ingredient.id }}">
+                            <input class="ingredient-sorting" name="" type="hidden"
+                                   value="{{ ingredient.ingredient.id }}">
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="row margin-top-10">
+        <div class="col-md-4">
+            <input type="submit" value="Customize !" class="btn btn-success"/>
+        </div>
+    </div>
+    {{ form_end(edit_form) }}
+{% endblock %}

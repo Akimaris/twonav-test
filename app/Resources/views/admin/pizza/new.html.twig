@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Pizza creation</h1>
+
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name, {'attr' : { 'class' : 'form-control'} }) }}
+                {{ form_errors(form.name) }}
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                {{ form_label(form.price) }}
+                {{ form_widget(form.price, {'attr' : { 'class' : 'form-control pizza-price'} }) }}
+                {{ form_errors(form.price) }}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5>Available ingredients </h5>
+            <div class="row" id="available-ingredients">
+                {% for ingredient in ingredients %}
+                    <div class="col-md-12 ingredient-container margin-top-10" data-id="{{ ingredient.id }}">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>{{ ingredient.name }}</span>
+                                <a class="btn btn-success add-ingredient pull-right"> <span class="glyphicon glyphicon-plus"></span></a>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="ingredient-sorting">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ingredient-form">
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h5>Added ingredients</h5>
+            <div class="row" id="added-ingredients">
+
+            </div>
+        </div>
+    </div>
+    <div class="row margin-top-10">
+        <div class="col-md-12">
+            <input type="submit" value="Create" class="btn btn-success"/>
+        </div>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

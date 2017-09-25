@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Admin</h1>
+    <div class="row margin-top-10">
+        <div class="col-md-2">
+            <a href="{{ path('pizza_index') }}" class="btn btn-primary">Manage pizzas</a>
+        </div>
+        <div class="col-md-8">
+            <a href="{{ path('ingredient_index') }}" class="btn btn-primary">Manage ingredients</a>
+        </div>
+    </div>
+{% endblock %}
